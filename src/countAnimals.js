@@ -8,11 +8,16 @@ const countAnimals = (animal) => {
     });
     return object;
   }
-  const bicho = data.species.find((specie) => specie.name.includes(animal.specie));
-  const object2 = bicho.residents.length;
-  return object2;
+  if (!animal.sex) {
+    const bicho = data.species.find((specie) => specie.name === animal.specie);
+    return bicho.residents.length;
+  }
+  if (animal.sex) {
+    const bicho2 = data.species.find((specie) => specie.name === animal.specie);
+    return bicho2.residents.filter((sexo) => sexo.sex === animal.sex).length;
+  }
 };
 
-console.log(countAnimals({ specie: 'penguins' }));
+console.log(countAnimals({ specie: 'bears', sex: 'female' }));
 
 module.exports = countAnimals;
