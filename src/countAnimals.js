@@ -9,8 +9,8 @@ const countAnimals = (animal) => {
     return object;
   }
   const bicho = data.species.find((specie) => specie.name.includes(animal.specie));
-  object[`${animal.specie}`] = bicho.residents.length;
-  return object;
+  const object2 = bicho.residents.length;
+  return object2;
 };
 
 console.log(countAnimals({ specie: 'penguins' }));
