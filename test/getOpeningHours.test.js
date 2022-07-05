@@ -1,6 +1,7 @@
 const getOpeningHours = require('../src/getOpeningHours');
 
 const zooClosed = 'The zoo is closed';
+const zooOpen = 'The zoo is open';
 
 describe('Testes da função getOpeningHours', () => {
   it('Para os argumentos Monday e 09:00-AM deve retornar a string The zoo is closed (Já que o Zoo está sempre fechado na segunda)', () => {
@@ -18,7 +19,7 @@ describe('Testes da função getOpeningHours', () => {
     });
   });
   it('Para os argumentos Tuesday e 09:00-AM deve retornar a string The zoo is open', () => {
-    expect(getOpeningHours('Tuesday', '09:00-AM')).toBe('The zoo is open');
+    expect(getOpeningHours('Tuesday', '09:00-AM')).toBe(zooOpen);
   });
   it('Para os argumentos Wednesday e 09:00-PM deve retornar a string The zoo is closed', () => {
     expect(getOpeningHours('Wednesday', '09:00-PM')).toBe(zooClosed);
@@ -34,5 +35,17 @@ describe('Testes da função getOpeningHours', () => {
   });
   it('Para os argumentos Sunday e 09:c0-AM deve lançar uma exceção com a mensagem: `The minutes should represent a number`', () => {
     expect(() => { getOpeningHours('Sunday', '09:c0-AM'); }).toThrow('The minutes should represent a number');
+  });
+  it('Para os argumentos Monday e 09:00-AM deve retornar a string `The zoo is closed` (Já que o Zoo está sempre fechado na segunda)', () => {
+    expect(getOpeningHours('Monday', '09:00-AM')).toBe(zooClosed);;
+  });
+  it('Para os argumentos Thu e 09:00-AM deve lançar uma exceção com a mensagem: `The day must be valid. Example: Monday`', () => {
+    expect(() => { getOpeningHours('Thu', '09:00-AM'); }).toThrow('The day must be valid. Example: Monday');
+  });
+  it('Para os argumentos Thursday e 14:00-AM deve lançar uma exceção com a mensagem: `The hour must be between 0 and 12`', () => {
+    expect(() => { getOpeningHours('Thursday', '14:00-AM'); }).toThrow('The hour must be between 0 and 12');
+  });
+  it('Para os argumentos Wednesday e 11:75-AM deve lançar uma exceção com a mensagem: `The minutes must be between 0 and 59`', () => {
+    expect(() => { getOpeningHours('Wednesday', '11:75-AM'); }).toThrow('The minutes must be between 0 and 59');
   });
 });
