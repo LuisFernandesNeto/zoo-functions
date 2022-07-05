@@ -37,7 +37,7 @@ describe('Testes da função getOpeningHours', () => {
     expect(() => { getOpeningHours('Sunday', '09:c0-AM'); }).toThrow('The minutes should represent a number');
   });
   it('Para os argumentos Monday e 09:00-AM deve retornar a string `The zoo is closed` (Já que o Zoo está sempre fechado na segunda)', () => {
-    expect(getOpeningHours('Monday', '09:00-AM')).toBe(zooClosed);;
+    expect(getOpeningHours('Monday', '09:00-AM')).toBe(zooClosed);
   });
   it('Para os argumentos Thu e 09:00-AM deve lançar uma exceção com a mensagem: `The day must be valid. Example: Monday`', () => {
     expect(() => { getOpeningHours('Thu', '09:00-AM'); }).toThrow('The day must be valid. Example: Monday');
